@@ -56,4 +56,10 @@ class BankAppApplicationTests {
 		return user != null;
 	}
 
+	@Test
+	void balanceEnquiry(){
+		Long balance = userRepository.getBalance("1120003258");
+		assertEquals(java.util.Optional.ofNullable(balance),java.util.Optional.ofNullable(1000l));
+	}
+
 }
