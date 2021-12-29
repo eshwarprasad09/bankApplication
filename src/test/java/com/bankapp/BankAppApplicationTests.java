@@ -55,7 +55,10 @@ class BankAppApplicationTests {
 		User user = userRepository.getUserByAccountNo(accountNo);
 		return user != null;
 	}
-	@Test
+
+
+
+
 	void moneyTransfer(){
 		if (isAccountExists("1120003232")) {
 			User fromUser = userRepository.getUserByAccountNo("1120003232");
@@ -110,6 +113,7 @@ class BankAppApplicationTests {
 		User user = userService.getLogin(loginDto);
 		assertEquals(user.getEmail(),"eshwarprasadishere123@gmai.com");
 	}
+
 
 	@Test
 	void balanceEnquiry(){
