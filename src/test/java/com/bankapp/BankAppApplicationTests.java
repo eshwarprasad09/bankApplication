@@ -83,6 +83,9 @@ class BankAppApplicationTests {
 
 
 
+
+
+   @Test
 	void moneyTransfer(){
 		if (isAccountExists("1120003232")) {
 			User fromUser = userRepository.getUserByAccountNo("1120003232");
@@ -156,4 +159,5 @@ class BankAppApplicationTests {
 		accountHistoryList.add(0,userAccount);
 		assertEquals(accountHistoryList.get(0),userAccount);
 	}
+
 }
