@@ -55,5 +55,18 @@ class BankAppApplicationTests {
 		User user = userRepository.getUserByAccountNo(accountNo);
 		return user != null;
 	}
+	@Test
+	void accountHistory(){
+		List accountHistoryList = accountHistoryRepository.getMiniStatement("1120003232");
+		User user = userService.getUserByAccountNo("1120003232");
+		UserAccount userAccount = new UserAccount();
+		userAccount.setAccountNo(user.getAccountNumber());
+		userAccount.setName(user.getName());
+		userAccount.setBalance(user.getBalance());
+		accountHistoryList.add(0,userAccount);
+		assertEquals(accountHistoryList.get(0),userAccount);
+	}
+
+
 
 }
