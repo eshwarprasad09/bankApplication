@@ -28,7 +28,7 @@ public class OpenAccountTest {
 	void openAccount() {
 		UserDto userDto = new UserDto();
 		userDto.setName("Eshwarprasad");
-		userDto.setEmail("eshwarprasad1111@gmail.com");
+		userDto.setEmail("eshwarprasad0998@gmail.com");
 		userDto.setPassword("123456");
 		User user = userService.openAccount(userDto);
 //		User user = new User();
@@ -43,7 +43,7 @@ public class OpenAccountTest {
 //
 //		userService.saveUser(user);
 
-		User user1 = userRepository.getUserByLogin("eshwarprasad1111@gmail.com","123456");
+		User user1 = userRepository.getUserByLogin("eshwarprasad0998@gmail.com","123456");
 
 		assertEquals(user.getEmail(), user1.getEmail());
 	}

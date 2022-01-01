@@ -1,12 +1,17 @@
 package com.bankapp;
 
+import com.bankapp.Dto.MoneyTransferDto;
 import com.bankapp.model.AccountHistory;
 import com.bankapp.model.User;
 import com.bankapp.repository.AccountHistoryRepository;
 import com.bankapp.repository.UserRepository;
+import com.bankapp.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,33 +24,23 @@ public class MoneyTransferTest {
     @Autowired
     private AccountHistoryRepository accountHistoryRepository;
 
-    public Boolean isAccountExists(String accountNo) {
-        User user = userRepository.getUserByAccountNo(accountNo);
-        return user != null;
-    }
+    @Autowired
+    private UserService userService;
 
     @Test
     void moneyTransfer(){
-        if (isAccountExists("1120003232")) {
-            User fromUser = userRepository.getUserByAccountNo("1120003232");
-            fromUser.setBalance(fromUser.getBalance() - 100);
-            userRepository.save(fromUser);
-        }
-
-        if (isAccountExists("1120002237")) {
-            User toUser = userRepository.getUserByAccountNo("1120002237");
-            toUser.setBalance(toUser.getBalance() + 100);
-            userRepository.save(toUser);
-        }
-
+        MoneyTransferDto moneyTransferDto = new MoneyTransferDto();
+        moneyTransferDto.setFromAccount("1120003232");
+        moneyTransferDto.setToAccount("1120002237");
+        moneyTransferDto.setAmount(100l);
+        userService.moneyTransfer("1120002237","1120003232",moneyTransferDto);
         User user = userRepository.getUserByAccountNo("1120003232");
-        AccountHistory accountHistory = new AccountHistory();
-        accountHistory.setToAccount("1120002237");
-        accountHistory.setFromAccount("1120003232");
-        accountHistory.setAmount(100l);
-        accountHistory.setUserId(2l);
-        AccountHistory accountHistory1 = accountHistoryRepository.save(accountHistory);
-        assertEquals(accountHistory,accountHistory1);
+        List accountHistory;
+        accountHistory = accountHistoryRepository.getMiniStatement("1120003232");
+        AccountHistory accountHistory1 = (AccountHistory) accountHistory.get(accountHistory.size()-1);
+        assertEquals(user.getAccountNumber(), accountHistory1.getFromAccount());
+//        assertEquals(user.getAccountNumber(), accountHistory1.getToAccount());
+//        assertEquals(moneyTransferDto.getAmount(), accountHistory1.getAmount());
     }
 
 }
