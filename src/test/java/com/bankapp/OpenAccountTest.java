@@ -1,5 +1,6 @@
 package com.bankapp;
 
+import com.bankapp.Dto.UserDto;
 import com.bankapp.model.Role;
 import com.bankapp.model.User;
 import com.bankapp.repository.RoleRepository;
@@ -25,19 +26,24 @@ public class OpenAccountTest {
 
     @Test
 	void openAccount() {
-		User user = new User();
-		user.setName("Eshwarprasad");
-		user.setEmail("eshwarprasad1010@gmail.com");
-		user.setPassword("123456789");
-		user.setBalance(1000L);
-		user.setAccountNumber("1");
+		UserDto userDto = new UserDto();
+		userDto.setName("Eshwarprasad");
+		userDto.setEmail("eshwarprasad1111@gmail.com");
+		userDto.setPassword("123456");
+		User user = userService.openAccount(userDto);
+//		User user = new User();
+//		user.setName("Eshwarprasad");
+//		user.setEmail("eshwarprasad101@gmail.com");
+//		user.setPassword("123456789");
+//		user.setBalance(1000L);
+//		user.setAccountNumber("1");
+//
+//		Role roleUser = roleRepository.findByName("user");
+//		user.addRole(roleUser);
+//
+//		userService.saveUser(user);
 
-		Role roleUser = roleRepository.findByName("user");
-		user.addRole(roleUser);
-
-		userService.saveUser(user);
-
-		User user1 = userRepository.getUserByLogin("eshwarprasad1010@gmail.com","123456789");
+		User user1 = userRepository.getUserByLogin("eshwarprasad1111@gmail.com","123456");
 
 		assertEquals(user.getEmail(), user1.getEmail());
 	}
