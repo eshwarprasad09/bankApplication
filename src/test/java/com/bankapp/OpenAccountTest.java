@@ -27,7 +27,7 @@ public class OpenAccountTest {
 	void openAccount() {
 		User user = new User();
 		user.setName("Eshwarprasad");
-		user.setEmail("eshwarprasad10000@gmail.com");
+		user.setEmail("eshwarprasad1010@gmail.com");
 		user.setPassword("123456789");
 		user.setBalance(1000L);
 		user.setAccountNumber("1");
@@ -37,10 +37,9 @@ public class OpenAccountTest {
 
 		userService.saveUser(user);
 
-		User user1 = userRepository.getUserByLogin("eshwarprasad10000@gmail.com","123456789");
+		User user1 = userRepository.getUserByLogin("eshwarprasad1010@gmail.com","123456789");
 
 		assertEquals(user.getEmail(), user1.getEmail());
 	}
-
 
 }
