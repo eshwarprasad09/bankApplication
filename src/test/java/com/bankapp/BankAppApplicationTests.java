@@ -36,7 +36,7 @@ class BankAppApplicationTests {
 	void openAccount() {
 		User user = new User();
 		user.setName("Eshwarprasad");
-		user.setEmail("ep@gmail.com");
+		user.setEmail("ep1@gmail.com");
 		user.setPassword("123456789");
 		user.setBalance(1000L);
 		user.setAccountNumber("1");
@@ -46,7 +46,7 @@ class BankAppApplicationTests {
 
 		userService.saveUser(user);
 
-		User user1 = userRepository.getUserByLogin("ep@gmail.com","123456789");
+		User user1 = userRepository.getUserByLogin("ep1@gmail.com","123456789");
 
 		assertEquals(user.getEmail(), user1.getEmail());
 	}
