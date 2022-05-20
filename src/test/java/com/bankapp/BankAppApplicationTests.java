@@ -20,6 +20,7 @@ import static org.junit.Assert.assertEquals;
 
 @SpringBootTest
 class BankAppApplicationTests {
+
 //	@Autowired
 //	private RoleRepository roleRepository;
 //
