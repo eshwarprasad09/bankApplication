@@ -23,5 +23,4 @@ public class OpenAccount {
     }
 
 }
-//jenkins
-//updatedProject
+//jenkins UpdatedProject
