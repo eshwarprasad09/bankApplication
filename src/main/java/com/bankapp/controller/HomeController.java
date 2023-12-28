@@ -7,6 +7,7 @@ import com.bankapp.repository.AccountHistoryRepository;
 import com.bankapp.repository.RoleRepository;
 import com.bankapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,13 @@ public class HomeController {
     public ResponseEntity<User> getUser(@PathVariable("accountNo") String accountNo){
         User user = userService.getUserByAccountNo(accountNo);
         return new ResponseEntity<User>(user, HttpStatus.FOUND);
+    }
+
+    @GetMapping("/getUsers")
+    public ResponseEntity<Page<User>> getAllUsers(@RequestParam(defaultValue = "2") int page,
+                                                  @RequestParam(defaultValue = "2") int size){
+        Page<User> users = userService.getAllUsers(page, size);
+        return ResponseEntity.status(200).body(users);
     }
 
     //checked out feature branch eshwarprasad
